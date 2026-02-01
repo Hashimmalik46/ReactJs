@@ -1,5 +1,5 @@
-import image from "./assets/1.jpg";
-function Card({ name="User", desc="Write Something" }) {
+import image from './assets/1.jpg';
+function Card({ name = 'User', desc = 'Write Something' }) {
   return (
     <div className="border flex flex-col items-center gap-2 p-3 w-80 h-80">
       <img src={image} className="w-full"></img>

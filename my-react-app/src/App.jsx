@@ -1,6 +1,6 @@
-import Nav from "./Nav.jsx";
-import Card from "./Card.jsx";
-import Greet from "./Greet.jsx";
+import Nav from './Nav.jsx';
+import Card from './Card.jsx';
+import Greet from './Greet.jsx';
 
 function App() {
   return (
