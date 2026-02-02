@@ -1,6 +1,6 @@
 import Nav from './Nav.jsx';
 import Card from './Card.jsx';
-import Greet from './Greet.jsx';
+import List from './List.jsx';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
         <Card name="John" desc="Web Developer" />
         <Card />
       </div>
+      <List />
     </>
   );
 }
