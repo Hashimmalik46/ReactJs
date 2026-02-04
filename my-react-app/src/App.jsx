@@ -4,6 +4,10 @@ import List from './List.jsx';
 import Button from './Button.jsx';
 import Counter from './Counter.jsx';
 import MyComponent from './MyComponent.jsx';
+import ColorPicker from './ColorPicker.jsx';
+import FavouriteCar from './FavouriteCar.jsx';
+import FruitList from './FruitList.jsx';
+import CarList from './CarList.jsx';
 
 function App() {
   const fruits = [
@@ -44,8 +48,17 @@ function App() {
         <Card />
       </div>
       <Counter />
-      <MyComponent/>
-      <div className='w-full flex justify-around'> 
+      <div className='w-full flex items-center justify-around'>
+        <MyComponent />
+        <CarList/>
+      </div>
+      <div className="flex items-center justify-around">
+        <ColorPicker />
+        <FavouriteCar />
+        <FruitList />
+      </div>
+
+      <div className="w-full flex justify-around">
         <List itemList={fruits} category="Fruits" />
         <List itemList={vegetables} category="Vegetables" />
         <List />
