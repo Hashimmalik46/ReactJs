@@ -81,7 +81,7 @@ function TaskManager() {
               return (
                 <div
                   key={index}
-                  className={`w-3/4 p-5 flex bg-white rounded-[10px] shadow shadow-white ${t.done ? 'opacity-50' : 'opacity-100'}`}
+                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white ${t.done ? 'opacity-50' : 'opacity-100'}`}
                 >
                   <input
                     type="checkbox"
@@ -90,7 +90,7 @@ function TaskManager() {
                     className="cursor-pointer"
                   ></input>
                   <p
-                    className={`text-2xl flex-1 font-noteworthy ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
+                    className={`text-2xl flex-1 font-medium ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
                   >
                     {changeCase(t.item)}
                   </p>
@@ -114,7 +114,7 @@ function TaskManager() {
             })}
           </div>
           <div
-            className={`bg-white w-1/2 h-20 flex items-center justify-center gap-5 p-2 rounded-[10px] absolute top-72 ${isOpen ? 'opacity-100 transition-opacity duration-200' : 'opacity-0 transition-opacity duration-200'}`}
+            className={`bg-white w-3/10 h-20 flex items-center justify-center gap-5 p-2 rounded-[10px] absolute top-72 ${isOpen ? 'opacity-100 transition-opacity duration-200' : 'opacity-0 transition-opacity duration-200'}`}
           >
             <input
               value={newtask}
