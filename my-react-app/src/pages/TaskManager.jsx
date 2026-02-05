@@ -12,7 +12,7 @@ function TaskManager() {
   const toggleInput = function () {
     setIsOpen(!isOpen);
   };
- 
+
   function handleTaskInput(e) {
     setNewTask(e.target.value);
   }
@@ -56,15 +56,18 @@ function TaskManager() {
     );
     setTasks(updatedTasks);
   }
+  function changeCase(str) {
+    return str
+      .split(' ')
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+  }
 
   return (
     <>
       <div className="w-full h-svh bg-gray-900">
         <Nav />
-        <div
-          
-          className="w-full flex flex-col items-center p-10 border-t border-white relative"
-        >
+        <div className="w-full flex flex-col items-center p-10 border-t border-white relative">
           <h1 className="text-3xl font-bold text-white mb-10">Task Manager</h1>
           <img
             src={addIcon}
@@ -84,11 +87,12 @@ function TaskManager() {
                     type="checkbox"
                     checked={t.done}
                     onChange={() => handleDone(index)}
+                    className="cursor-pointer"
                   ></input>
                   <p
-                    className={`text-2xl flex-1 font-patrick ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
+                    className={`text-2xl flex-1 font-noteworthy ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
                   >
-                    {t.item.toUpperCase()}
+                    {changeCase(t.item)}
                   </p>
                   <img
                     src={remIcon}
@@ -117,6 +121,11 @@ function TaskManager() {
               className="border p-3 w-full rounded-[10px]"
               placeholder="Enter a task..."
               onChange={handleTaskInput}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  handleAdd();
+                }
+              }}
             ></input>
             <button
               className="bg-gray-900 text-white p-3 w-20 rounded-[10px] cursor-pointer hover:bg-gray-800 transition-colors duration-200"
