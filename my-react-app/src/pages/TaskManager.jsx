@@ -79,13 +79,13 @@ function TaskManager() {
             onClick={toggleInput}
           />
           <div
-            className={`w-full h-full flex flex-col items-center gap-5 ${isOpen ? 'opacity-30 transition-opacity duration-300' : 'opacity-100 transition-opacity duration-200'}`}
+            className={`w-full h-full flex flex-col items-center gap-5 transition-opacity duration-300 ${isOpen ? 'opacity-30' : 'opacity-100'}`}
           >
             {tasks.map((t, index) => {
               return (
                 <div
                   key={index}
-                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white ${t.done ? 'opacity-50' : 'opacity-100 hover:scale-101 transition-transform duration-300'}`}
+                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white transition-transform duration-300 ${t.done ? 'opacity-50' : 'opacity-100'}`}
                 >
                   <input
                     type="checkbox"
@@ -118,7 +118,7 @@ function TaskManager() {
             })}
           </div>
           <div
-            className={`bg-white w-3/10 h-20 flex items-center justify-center gap-5 p-2 rounded-[10px] absolute top-72 ${isOpen ? 'opacity-100 transition-opacity duration-200' : 'opacity-0 transition-opacity duration-200'}`}
+            className={`bg-white w-3/10 h-20 flex items-center justify-center gap-5 p-2 rounded-[10px] absolute top-72 transition-opacity duration-200 ${isOpen ? 'opacity-100 ' : 'opacity-0'}`}
           >
             <input
               value={newtask}
