@@ -132,7 +132,7 @@ function TaskManager() {
           >
             <input
               value={newtask}
-              className="border p-3 w-full rounded-[10px]"
+              className="border p-3 w-full rounded-[10px] outline-0 focus:border-[#fca74c]"
               placeholder="Enter a task..."
               onChange={handleTaskInput}
               onKeyDown={e => {
@@ -142,7 +142,7 @@ function TaskManager() {
               }}
             ></input>
             <button
-              className="bg-gray-900 text-white p-3 w-20 rounded-[10px] cursor-pointer hover:bg-gray-800 transition-colors duration-200"
+              className="bg-[#fca74c] text-white p-3 w-25 rounded-[10px] cursor-pointer hover:bg-gray-800 transition-colors duration-200"
               onClick={handleAdd}
             >
               Add
