@@ -3,14 +3,16 @@ import addIcon from '../assets/add.png';
 import remIcon from '../assets/remove.png';
 import upIcon from '../assets/up.png';
 import downIcon from '../assets/down.png';
-import taskIcon from '../assets/task.png'
-import { useState } from 'react';
+import taskIcon from '../assets/task.png';
+import closeIcon from '../assets/close.png';
+import { useEffect, useState } from 'react';
 function TaskManager() {
+  //Add Updater Functions.
   const [tasks, setTasks] = useState([]);
   const [newtask, setNewTask] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleInput = function () {
+  const toggleInput = function (e) {
     setIsOpen(!isOpen);
   };
 
@@ -58,22 +60,18 @@ function TaskManager() {
     setTasks(updatedTasks);
   }
   function changeCase(str) {
-    return str
-      .split(' ')
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(' ');
+    return str[0].toUpperCase() + str.slice(1);
   }
-
   return (
     <>
-      <div className="w-full h-svh bg-gray-900">
+      <div id="main-cont" className="w-full h-svh bg-gray-900">
         <Nav />
         <div className="w-full flex flex-col items-center p-10 relative">
-          <div className=' w-1/3 h-20 flex items-center justify-center gap-5 mb-10'>
-            <h1 className="text-3xl font-bold text-white">
+          <div className=" w-1/3 h-20 flex items-center justify-center gap-5 mb-10">
+            <h1 className="text-3xl font-bold text-white font-mono">
               Task Manager
             </h1>
-            <img src={taskIcon} className='w-15 h-15'/>
+            <img src={taskIcon} className="w-15 h-15" />
           </div>
           <img
             src={addIcon}
@@ -96,7 +94,7 @@ function TaskManager() {
                     className="cursor-pointer"
                   ></input>
                   <p
-                    className={`text-2xl flex-1 font-medium ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
+                    className={`text-2xl flex-1 font-handwriting ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
                   >
                     {changeCase(t.item)}
                   </p>
@@ -139,6 +137,11 @@ function TaskManager() {
             >
               Add
             </button>
+            <img
+              src={closeIcon}
+              className="w-5 h-5 mb-12 cursor-pointer hover:scale-105 transition-transform duration-200"
+              onClick={toggleInput}
+            />
           </div>
         </div>
       </div>

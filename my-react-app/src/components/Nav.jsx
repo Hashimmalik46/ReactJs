@@ -5,11 +5,12 @@ import taskIcon from '../assets/task.png';
 
 function Nav() {
   const location = useLocation();
+  const isTm=location.pathname==='/taskmanager'
   return (
     <nav
-      className={`h-20 flex items-center justify-around ${location.pathname === '/' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}
+      className={`h-20 flex items-center justify-around ${location.pathname === '/' ? 'bg-gray-900 text-white' : 'bg-white text-black font-mono'}`}
     >
-      <Greet name="Hashim" isLogged={true} />
+      <Greet name="Hashim" isTm={isTm} />
       <ul className="flex gap-8 items-center">
         <li>
           <Link to="/">

@@ -8,6 +8,8 @@ import ColorPicker from '../components/ColorPicker.jsx';
 import FavouriteCar from '../components/FavouriteCar.jsx';
 import FruitList from '../components/FruitList.jsx';
 import CarList from '../components/CarList.jsx';
+import MyComponent2 from '../components/MyComponent2.jsx';
+import Resize from '../components/Resize.jsx';
 function Home() {
   const fruits = [
     { id: 1, name: 'Apple', calories: 20 },
@@ -41,6 +43,7 @@ function Home() {
     <>
      <Nav />
       <Button />
+      <Resize/>
       <div className="w-full flex mt-20 justify-around">
         <Card name="Hashim Malik" desc="A Passionate developer and designer." />
         <Card name="John" desc="Web Developer" />
@@ -50,6 +53,7 @@ function Home() {
       <div className="w-full flex items-center justify-around">
         <MyComponent />
         <CarList />
+      <MyComponent2/>
       </div>
       <div className="flex items-center justify-around">
         <ColorPicker />
