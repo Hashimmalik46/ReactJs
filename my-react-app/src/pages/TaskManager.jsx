@@ -81,41 +81,51 @@ function TaskManager() {
           <div
             className={`w-full h-full flex flex-col items-center gap-5 transition-opacity duration-300 ${isOpen ? 'opacity-30' : 'opacity-100'}`}
           >
-            {tasks.map((t, index) => {
-              return (
+            {tasks.length === 0 ? (
+              <p className="text-white text-xl font-mono mt-45 opacity-25">No tasks to list 😴</p>
+            ) : (
+              tasks.map((t, index) => (
                 <div
                   key={index}
-                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white transition-transform duration-300 ${t.done ? 'opacity-50' : 'opacity-100'}`}
+                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white transition-transform duration-300 ${
+                    t.done ? 'opacity-50' : 'opacity-100'
+                  }`}
                 >
                   <input
                     type="checkbox"
                     checked={t.done}
                     onChange={() => handleDone(index)}
                     className="cursor-pointer"
-                  ></input>
+                  />
+
                   <p
-                    className={`text-2xl flex-1 font-handwriting ml-5 ${t.done ? 'line-through italic' : 'no-underline'}`}
+                    className={`text-2xl flex-1 font-handwriting ml-5 ${
+                      t.done ? 'line-through italic' : ''
+                    }`}
                   >
                     {changeCase(t.item)}
                   </p>
+
                   <img
                     src={remIcon}
                     className="w-10 h-10 mr-2 cursor-pointer hover:scale-105 transition-all duration-200"
                     onClick={() => handleRemove(index)}
                   />
+
                   <img
                     src={upIcon}
                     className="w-10 h-10 mr-2 cursor-pointer hover:scale-105 transition-all duration-200"
                     onClick={() => handleMoveUp(index)}
                   />
+
                   <img
                     src={downIcon}
                     className="w-10 h-10 cursor-pointer hover:scale-105 transition-all duration-200"
                     onClick={() => handleMoveDown(index)}
                   />
                 </div>
-              );
-            })}
+              ))
+            )}
           </div>
           <div
             className={`bg-white w-3/10 h-20 flex items-center justify-center gap-5 p-2 rounded-[10px] absolute top-72 transition-opacity duration-200 ${isOpen ? 'opacity-100 ' : 'opacity-0'}`}
