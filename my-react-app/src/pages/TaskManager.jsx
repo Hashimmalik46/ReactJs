@@ -3,10 +3,11 @@ import addIcon from '../assets/add.png';
 import remIcon from '../assets/remove.png';
 import upIcon from '../assets/up.png';
 import downIcon from '../assets/down.png';
+import taskIcon from '../assets/task.png'
 import { useState } from 'react';
 function TaskManager() {
   const [tasks, setTasks] = useState([]);
-  const [newtask, setNewTask] = useState('fefse');
+  const [newtask, setNewTask] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleInput = function () {
@@ -67,8 +68,13 @@ function TaskManager() {
     <>
       <div className="w-full h-svh bg-gray-900">
         <Nav />
-        <div className="w-full flex flex-col items-center p-10 border-t border-white relative">
-          <h1 className="text-3xl font-bold text-white mb-10">Task Manager</h1>
+        <div className="w-full flex flex-col items-center p-10 relative">
+          <div className=' w-1/3 h-20 flex items-center justify-center gap-5 mb-10'>
+            <h1 className="text-3xl font-bold text-white">
+              Task Manager
+            </h1>
+            <img src={taskIcon} className='w-15 h-15'/>
+          </div>
           <img
             src={addIcon}
             className="w-15 h-15 absolute right-60 top-8 cursor-pointer hover:scale-110 transition-all duration-200"
@@ -81,7 +87,7 @@ function TaskManager() {
               return (
                 <div
                   key={index}
-                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white ${t.done ? 'opacity-50' : 'opacity-100'}`}
+                  className={`w-1/2 p-5 flex bg-white rounded-[10px] shadow shadow-white ${t.done ? 'opacity-50' : 'opacity-100 hover:scale-101 transition-transform duration-300'}`}
                 >
                   <input
                     type="checkbox"

@@ -1,26 +1,31 @@
 import { Link, useLocation } from 'react-router-dom';
 import Greet from './Greet.jsx';
+import HomeIcon from '../assets/home.png';
+import taskIcon from '../assets/task.png';
+
 function Nav() {
   const location = useLocation();
   return (
-    <nav className="bg-gray-900 text-white h-20 flex items-center justify-around">
+    <nav
+      className={`h-20 flex items-center justify-around ${location.pathname === '/' ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}
+    >
       <Greet name="Hashim" isLogged={true} />
       <ul className="flex gap-8 items-center">
-        <li
-          style={
-            location.pathname === '/'
-              ? { textDecoration: 'underline' }
-              : { textDecoration: 'none' }
-          }
-        >
-          <Link to="/">Home</Link>
+        <li>
+          <Link to="/">
+            <img
+              src={HomeIcon}
+              className={`w-8 h-8 transition-opacity duration-200 ${location.pathname === '/' ? 'opacity-100' : 'opacity-25 hover:opacity-100'}`}
+            />
+          </Link>
         </li>
-        <li   style={
-            location.pathname === '/taskmanager'
-              ? { textDecoration: 'underline' }
-              : { textDecoration: 'none' }
-          }>
-          <Link to="/taskmanager">Task Manager</Link>
+        <li>
+          <Link to="/taskmanager">
+            <img
+              src={taskIcon}
+              className={`w-8 h-8  transition-opacity duration-200 ${location.pathname === '/taskmanager' ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
+            />
+          </Link>
         </li>
       </ul>
     </nav>
