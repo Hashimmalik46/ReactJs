@@ -1,11 +1,15 @@
-import ComponentB from "./ComponentB";
+import ComponentB from './ComponentB';
+import { createContext } from 'react';
 
-function ComponentA({name}) {
+export const UserContext = createContext();
+function ComponentA({ name }) {
   return (
     <div className="border">
       <p>Component A</p>
       <p>{name}</p>
-      <ComponentB/>
+      <UserContext.Provider value={name}>
+        <ComponentB />
+      </UserContext.Provider>
     </div>
   );
 }

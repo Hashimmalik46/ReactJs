@@ -1,11 +1,15 @@
-import ComponentD from './ComponentD';
+import { useContext } from 'react';
+import { UserContext } from './ComponentA';
 
 function ComponentC() {
+  const name = useContext(UserContext);
+
   return (
     <div className="border">
       <p>Component C</p>
-      <ComponentD />
+      <p>{name}</p>
     </div>
   );
 }
+
 export default ComponentC;

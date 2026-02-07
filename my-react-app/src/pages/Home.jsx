@@ -11,6 +11,7 @@ import CarList from '../components/CarList.jsx';
 import MyComponent2 from '../components/MyComponent2.jsx';
 import Resize from '../components/Resize.jsx';
 import ComponentA from '../components/ComponentA.jsx';
+import CounterByRef from '../components/CounterByRef.jsx';
 function Home() {
   const fruits = [
     { id: 1, name: 'Apple', calories: 20 },
@@ -53,6 +54,7 @@ function Home() {
       <div className="w-full flex gap-5 mt-10">
         <Counter />
         <ComponentA name="Hashim" />
+        <CounterByRef/>
       </div>
 
       <div className="w-full flex items-center justify-around">
