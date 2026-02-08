@@ -5,18 +5,18 @@ import taskIcon from '../assets/task.png';
 
 function Nav() {
   const location = useLocation();
-  const isTm=location.pathname==='/taskmanager'
+  const isTm = location.pathname === '/taskmanager';
   return (
     <nav
-      className={`h-20 flex items-center justify-around ${location.pathname === '/' ? 'bg-gray-900 text-white' : 'bg-white text-black font-mono'}`}
+      className={`h-20 flex items-center justify-around ${location.pathname === '/home' ? 'bg-gray-900 text-white' : 'bg-white text-black font-mono'}`}
     >
       <Greet name="Hashim" isTm={isTm} />
       <ul className="flex gap-8 items-center">
         <li>
-          <Link to="/">
+          <Link to="/home">
             <img
               src={HomeIcon}
-              className={`w-8 h-8 transition-opacity duration-200 ${location.pathname === '/' ? 'opacity-100' : 'opacity-25 hover:opacity-100'}`}
+              className={`w-8 h-8 transition-opacity duration-200 ${location.pathname === '/home' ? 'opacity-100' : 'opacity-25 hover:opacity-100'}`}
             />
           </Link>
         </li>
@@ -27,6 +27,9 @@ function Nav() {
               className={`w-8 h-8  transition-opacity duration-200 ${location.pathname === '/taskmanager' ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
             />
           </Link>
+        </li>
+        <li>
+          <Link to="/">Login</Link>
         </li>
       </ul>
     </nav>
