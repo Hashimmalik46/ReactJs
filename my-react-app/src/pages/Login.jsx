@@ -1,18 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const storedData = JSON.parse(localStorage.getItem('userData'));
 function Login() {
+  const storedData = JSON.parse(localStorage.getItem('userData'));
   const [user, setUser] = useState('');
   const [pass, setPassword] = useState('');
   const navigate = useNavigate();
+  const isAuth = localStorage.getItem('isAuth') === 'true';
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/home');
+    }
+  }, [isAuth, navigate]);
 
   function handleLogin(e) {
     e.preventDefault();
 
-    user === storedData.username && pass === storedData.password
-      ? navigate('/home')
-      : alert('Invalid username or password');
+    if (user === storedData.username && pass === storedData.password) {
+      localStorage.setItem('isAuth', 'true');
+      navigate('/home');
+    } else {
+      alert('Invalid Username or Password');
+    }
   }
   return (
     <div className="w-svw h-svh flex items-center justify-center bg-gray-900">

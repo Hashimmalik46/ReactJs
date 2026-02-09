@@ -1,16 +1,25 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Greet from './Greet.jsx';
 import HomeIcon from '../assets/home.png';
 import taskIcon from '../assets/task.png';
 
 function Nav() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isTm = location.pathname === '/taskmanager';
+  const isAuth = localStorage.getItem('isAuth') === 'true';
+  const data = JSON.parse(localStorage.getItem('userData'));
+
+  function handleLogout() {
+    localStorage.removeItem('isAuth');
+    navigate('/');
+  }
+
   return (
     <nav
       className={`h-20 flex items-center justify-around ${location.pathname === '/home' ? 'bg-gray-900 text-white' : 'bg-white text-black font-mono'}`}
     >
-      <Greet name="Hashim" isTm={isTm} />
+      <Greet name={data.username} isTm={isTm} />
       <ul className="flex gap-8 items-center">
         <li>
           <Link to="/home">
@@ -28,9 +37,7 @@ function Nav() {
             />
           </Link>
         </li>
-        <li>
-          <Link to="/">Login</Link>
-        </li>
+        <li>{isAuth && <button onClick={handleLogout}>Logout</button>}</li>
       </ul>
     </nav>
   );
