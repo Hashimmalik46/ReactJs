@@ -24,6 +24,7 @@ function Login() {
       alert('Invalid Username or Password');
     }
   }
+
   return (
     <div className="w-svw h-svh flex items-center justify-center bg-gray-900">
       <div className="w-1/4 h-1/2 border border-white rounded-[20px] flex flex-col p-5 gap-10">
