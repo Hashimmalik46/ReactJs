@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import StarRating from "./components/StarRating";
-import { func } from "prop-types";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -9,11 +8,17 @@ const KEY = "de9f4ceb";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+  // const [watched, setWatched] = useState([]);
+
+  const [watched, setWatched] = useState(() => {
+    //we should not call a fn in useState rather pass one like a callback
+    const storedValue = localStorage.getItem("watched");
+    return JSON.parse(storedValue);
+  });
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -25,11 +30,17 @@ export default function App() {
 
   function handleAddWacthed(movie) {
     setWatched((watched) => [...watched, movie]);
+    // localStorage.setItem("watched",JSON.stringify(watched))//this wont work as watched is stale state because usestate works aync.
+    // localStorage.setItem("watched", JSON.stringify([...watched, movie]));
   }
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]); //using this we dont have to manually clear the localstorage.
 
   useEffect(() => {
     const controller = new AbortController();
@@ -140,8 +151,23 @@ function Logo() {
   );
 }
 function Search({ query, setQuery }) {
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    function callback(e) {
+      if (document.activeElement === inputEl.current) return;
+
+      if (e.key === "Enter") {
+        inputEl.current.focus();
+        setQuery("");
+      }
+    }
+    document.addEventListener("keydown", callback);
+    return () => document.addEventListener("keydown", callback);
+  }, [setQuery]);
   return (
     <input
+      ref={inputEl}
       className="search"
       type="text"
       placeholder="Search movies..."
