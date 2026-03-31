@@ -19,7 +19,7 @@ function City() {
 
   useEffect(() => {
     getCity(id);
-  }, [id]);
+  }, [id, getCity]);
 
   const { cityName, flag, date, notes } = currentCity;
   if (isLoading) return <Spinner />;
